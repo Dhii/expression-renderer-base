@@ -13,7 +13,7 @@ use Dhii\Util\String\StringableInterface as Stringable;
  *
  * @since [*next-version*]
  */
-class AbstractBaseCommonExpressionTemplate extends AbstractBaseDelegatingExpressionTemplate
+abstract class AbstractBaseCommonExpressionTemplate extends AbstractBaseDelegatingExpressionTemplate
 {
     /*
      * Provides functionality for compiling expression terms via imploding.
