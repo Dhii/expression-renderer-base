@@ -30,14 +30,9 @@ abstract class AbstractBaseCommonExpressionTemplate extends AbstractBaseDelegati
     use OperatorStringAwareTrait;
 
     /**
-     * Retrieves the implosion glue to use for compiling an expression's full render result.
+     * {@inheritdoc}
      *
      * @since [*next-version*]
-     *
-     * @param ExpressionInterface   $expression    The expression instance.
-     * @param string[]|Stringable[] $renderedTerms TAn array of rendered terms.
-     *
-     * @return string|Stringable The implosion glue string.
      */
     protected function _getCompileExpressionTermsGlue(ExpressionInterface $expression, array $renderedTerms)
     {
