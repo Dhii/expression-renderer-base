@@ -17,8 +17,11 @@
         "dhii/data-container-interface": "^0.1",
         "dhii/data-container-abstract": "^0.1",
         "dhii/data-container-base": "^0.1",
+        "dhii/container-helper-base": "dev-task/initial-classes",
         "dhii/output-renderer-abstract": "^0.1",
         "dhii/output-renderer-base": "dev-task/initial-classes",
+        "dhii/iterator-helper-base": "^0.1",
+        "dhii/normalization-helper-base": "^0.1",
         "dhii/exception-helper-base": "^0.1",
         "dhii/i18n-helper-base": "^0.1"
     },
@@ -41,7 +44,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/Dhii/expression-renderer-abstract"
+            "url": "https://github.com/Dhii/container-helper-base"
         }
     ]
 }
