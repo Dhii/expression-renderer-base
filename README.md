@@ -9,3 +9,22 @@
 Base functionality for expression renderers.
 
 [Dhii]: https://github.com/Dhii/dhii
+
+## Details
+
+[`AbstractBaseExpressionTemplate`] - Provides common functionality for expression renderers, such as reading the
+expression from the context, factory methods for exceptions, string normalization, etc.
+
+[`AbstractBaseDelegateExpressionTemplate`] - Provides delegation and container awareness for renderers that need to
+delegate the renderer of an expression's terms to other renderers.
+
+[`AbstractBaseCommonExpressionTemplate`] - Provides functionality for the most common implementation: a delegating
+renderer solution that uses an internal operator string for compiling the final render result.
+
+[`AbstractBaseSelfDelegateExpressionTemplate`] - Provides functionality for creating master renderers, that delegate
+_all_ expressions to other renderers.
+
+[`AbstractBaseExpressionTemplate`]: src/AbstractBaseExpressionTemplate.php
+[`AbstractBaseDelegateExpressionTemplate`]: src/AbstractBaseDelegateExpressionTemplate.php 
+[`AbstractBaseCommonExpressionTemplate`]: src/AbstractBaseCommonExpressionTemplate.php 
+[`AbstractBaseSelfDelegateExpressionTemplate`]: src/AbstractBaseSelfDelegateExpressionTemplate.php 
