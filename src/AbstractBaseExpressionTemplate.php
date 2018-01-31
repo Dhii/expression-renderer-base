@@ -2,19 +2,22 @@
 
 namespace Dhii\Expression\Renderer;
 
+use Dhii\Data\Container\ContainerGetCapableTrait;
 use Dhii\Data\Container\CreateNotFoundExceptionCapableTrait;
 use Dhii\Exception\CreateInvalidArgumentExceptionCapableTrait;
 use Dhii\I18n\StringTranslatingTrait;
 use Dhii\Output\CreateRendererExceptionCapableTrait;
 use Dhii\Output\CreateTemplateRenderExceptionCapableTrait;
 use Dhii\Output\TemplateInterface;
-use Psr\Container\ContainerInterface;
+use Dhii\Util\Normalization\NormalizeStringCapableTrait;
 
 /**
  * Base functionality for expression templates.
  *
  * This partial implementation provides the basic functionality for extracting the expression from a render context,
  * creating the appropriate exceptions and implementing the template API.
+ *
+ * Implementors are only required to implement the `_renderExpression()` method.
  *
  * @since [*next-version*]
  */
@@ -26,6 +29,20 @@ abstract class AbstractBaseExpressionTemplate implements TemplateInterface
      * @since [*next-version*]
      */
     use RenderExpressionTrait;
+
+    /*
+     * Provides functionality for reading data from any type of container object.
+     *
+     * @since [*next-version*]
+     */
+    use ContainerGetCapableTrait;
+
+    /*
+     * Provides string normalization functionality.
+     *
+     * @since [*next-version*]
+     */
+    use NormalizeStringCapableTrait;
 
     /*
      * Provides functionality for creating invalid argument exception instances.
@@ -70,38 +87,5 @@ abstract class AbstractBaseExpressionTemplate implements TemplateInterface
     public function render($context = null)
     {
         return $this->_render($context);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @since [*next-version*]
-     */
-    protected function _containerGet($container, $key)
-    {
-        if ($container instanceof ContainerInterface) {
-            return $container->get($key);
-        }
-
-        if (is_array($container)) {
-            if (isset($container[$key])) {
-                return $container[$key];
-            }
-
-            throw $this->_createNotFoundException(
-                $this->__('Key "%s" was not found', [$key]),
-                null,
-                null,
-                null,
-                $key
-            );
-        }
-
-        throw $this->_createInvalidArgumentException(
-            $this->__('Argument 1 is not a valid container'),
-            null,
-            null,
-            $container
-        );
     }
 }
