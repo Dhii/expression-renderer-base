@@ -3,7 +3,7 @@
 namespace Dhii\Expression\UnitTest;
 
 use Dhii\Data\Container\Exception\NotFoundException;
-use Dhii\Expression\Renderer\AbstractBaseDelegatingExpressionTemplate as TestSubject;
+use Dhii\Expression\Renderer\AbstractBaseDelegateExpressionTemplate as TestSubject;
 use Dhii\Expression\Renderer\ExpressionContextInterface;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use Xpmock\TestCase;
@@ -13,14 +13,14 @@ use Xpmock\TestCase;
  *
  * @since [*next-version*]
  */
-class AbstractBaseDelegatingExpressionTemplateTest extends TestCase
+class AbstractBaseDelegateExpressionTemplateTest extends TestCase
 {
     /**
      * The class name of the test subject.
      *
      * @since [*next-version*]
      */
-    const TEST_SUBJECT_CLASSNAME = 'Dhii\Expression\Renderer\AbstractBaseDelegatingExpressionTemplate';
+    const TEST_SUBJECT_CLASSNAME = 'Dhii\Expression\Renderer\AbstractBaseDelegateExpressionTemplate';
 
     /**
      * Creates a new instance of the test subject.

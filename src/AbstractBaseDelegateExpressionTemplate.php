@@ -16,7 +16,7 @@ use Dhii\Expression\TermInterface;
  *
  * @since [*next-version*]
  */
-abstract class AbstractBaseDelegatingExpressionTemplate extends AbstractBaseExpressionTemplate
+abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpressionTemplate
 {
     /*
      * Provides functionality for traversing the expression, rendering its terms, then compiling the result.
