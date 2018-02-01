@@ -52,16 +52,6 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
      *
      * @since [*next-version*]
      */
-    protected function _renderExpressionTerm(TermInterface $term)
-    {
-        return $this->_delegateRenderTerm($term);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @since [*next-version*]
-     */
     protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
         return $this->_getTermTypeRenderer($term->getType());
