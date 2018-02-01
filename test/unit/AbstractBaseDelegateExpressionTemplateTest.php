@@ -131,13 +131,16 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
                 $term2 = $this->createExpression($type2 = uniqid('type-')),
             ]
         );
+        $ctx = [ExpressionContextInterface::K_EXPRESSION => $expression];
         $render1 = uniqid('render-');
         $template1 = $this->createTemplate();
-        $template1->expects($this->atLeastOnce())->method('render')->with($term1)->willReturn($render1);
+        $ctx1 = [ExpressionContextInterface::K_EXPRESSION => $term1];
+        $template1->expects($this->atLeastOnce())->method('render')->with($ctx1)->willReturn($render1);
 
         $render2 = uniqid('render-');
         $template2 = $this->createTemplate();
-        $template2->expects($this->atLeastOnce())->method('render')->with($term2)->willReturn($render2);
+        $ctx2 = [ExpressionContextInterface::K_EXPRESSION => $term2];
+        $template2->expects($this->atLeastOnce())->method('render')->with($ctx2)->willReturn($render2);
 
         $dlgContainer = $this->createContainer();
         $dlgContainer->method('get')->willReturnCallback(
@@ -154,16 +157,13 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
         $reflect->_setContainer($dlgContainer);
 
         $expected = $render1 . $render2;
-        $context = [
-            ExpressionContextInterface::K_EXPRESSION => $expression,
-        ];
 
         $subject->expects($this->atLeastOnce())
                 ->method('_compileExpressionTerms')
-                ->with($expression, $this->isType('array'))
+                ->with($expression, [$render1, $render2], $ctx)
                 ->willReturn($expected);
 
-        $actual = $subject->render($context);
+        $actual = $subject->render($ctx);
 
         $this->assertEquals($expected, $actual, 'Retrieved render result does not match expectation.');
     }

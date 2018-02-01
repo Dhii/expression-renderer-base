@@ -51,9 +51,9 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
      *
      * @since [*next-version*]
      */
-    protected function _renderExpression(ExpressionInterface $expression)
+    protected function _renderExpression(ExpressionInterface $expression, $context = null)
     {
-        return $this->_renderExpressionAndTerms($expression);
+        return $this->_renderExpressionAndTerms($expression, $context);
     }
 
     /**
@@ -61,9 +61,9 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
      *
      * @since [*next-version*]
      */
-    protected function _renderExpressionTerm(TermInterface $term)
+    protected function _renderExpressionTerm(TermInterface $term, $context = null)
     {
-        return $this->_delegateRenderTerm($term);
+        return $this->_delegateRenderTerm($term, $context);
     }
 
     /**
@@ -71,7 +71,7 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
      *
      * @since [*next-version*]
      */
-    protected function _getTermDelegateRenderer(TermInterface $term)
+    protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
         return $this->_getTermTypeRenderer($term->getType());
     }
