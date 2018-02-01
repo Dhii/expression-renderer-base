@@ -3,6 +3,7 @@
 namespace Dhii\Expression\Renderer;
 
 use Dhii\Data\Container\ContainerGetCapableTrait;
+use Dhii\Data\Container\CreateContainerExceptionCapableTrait;
 use Dhii\Data\Container\CreateNotFoundExceptionCapableTrait;
 use Dhii\Exception\CreateInvalidArgumentExceptionCapableTrait;
 use Dhii\I18n\StringTranslatingTrait;
@@ -51,6 +52,13 @@ abstract class AbstractBaseExpressionTemplate implements TemplateInterface
      * @since [*next-version*]
      */
     use CreateInvalidArgumentExceptionCapableTrait;
+
+    /**
+     * Provides functionality for creating container exception instances.
+     *
+     * @since [*next-version*]
+     */
+    use CreateContainerExceptionCapableTrait;
 
     /*
      * Provides functionality for creating container not-found exception instances.
