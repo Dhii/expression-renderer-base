@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9612c3ffa12a894608be95f1789eb49",
+    "content-hash": "1bd046f646a8b3d989f48e46a87ee886",
     "packages": [
         {
             "name": "dhii/container-helper-base",
-            "version": "dev-task/initial-classes",
+            "version": "v0.1-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/container-helper-base.git",
-                "reference": "cc6e9e3386b08342979226795d06a01e3139ce40"
+                "reference": "d54a1726f21ecaf71e95c21641233ef35c826365"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/cc6e9e3386b08342979226795d06a01e3139ce40",
-                "reference": "cc6e9e3386b08342979226795d06a01e3139ce40",
+                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/d54a1726f21ecaf71e95c21641233ef35c826365",
+                "reference": "d54a1726f21ecaf71e95c21641233ef35c826365",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,20 @@
                     "Dhii\\Data\\Container\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Dhii\\Data\\Container\\UnitTest\\": "test/unit",
+                    "Dhii\\Data\\Container\\FuncTest\\": "test/functional"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "phpunit"
+                ],
+                "csfix": [
+                    "php-cs-fixer fix -vvv"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -53,7 +66,11 @@
                 }
             ],
             "description": "Helper functionality for working with container.",
-            "time": "2018-01-31T15:35:17+00:00"
+            "support": {
+                "source": "https://github.com/Dhii/container-helper-base/tree/v0.1-alpha2",
+                "issues": "https://github.com/Dhii/container-helper-base/issues"
+            },
+            "time": "2018-02-01T12:41:32+00:00"
         },
         {
             "name": "dhii/data-container-abstract",
@@ -499,16 +516,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/expression-renderer-abstract.git",
-                "reference": "71fb3303d95b6fe0937869593a93a9c04867ad27"
+                "reference": "361a0d088856d4dd1076d44e0d6e5f5d2751692e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/expression-renderer-abstract/zipball/71fb3303d95b6fe0937869593a93a9c04867ad27",
-                "reference": "71fb3303d95b6fe0937869593a93a9c04867ad27",
+                "url": "https://api.github.com/repos/Dhii/expression-renderer-abstract/zipball/361a0d088856d4dd1076d44e0d6e5f5d2751692e",
+                "reference": "361a0d088856d4dd1076d44e0d6e5f5d2751692e",
                 "shasum": ""
             },
             "require": {
                 "dhii/expression-interface": "^0.2",
+                "dhii/expression-renderer-interface": "^0.1",
                 "dhii/output-renderer-interface": "^0.2 | ^0.3",
                 "php": "^5.4 | ^7.0"
             },
@@ -542,7 +560,55 @@
                 }
             ],
             "description": "Abstract functionality for objects that can render expressions.",
-            "time": "2018-02-01T09:23:47+00:00"
+            "time": "2018-02-01T15:55:06+00:00"
+        },
+        {
+            "name": "dhii/expression-renderer-interface",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dhii/expression-renderer-interface.git",
+                "reference": "3cfde9f01080a089b873458b607ad51b659257e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dhii/expression-renderer-interface/zipball/3cfde9f01080a089b873458b607ad51b659257e1",
+                "reference": "3cfde9f01080a089b873458b607ad51b659257e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 | ^7.0",
+                "psr/container": "^1.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "<=0.3.2",
+                "dhii/php-cs-fixer-config": "dev-php-5.3",
+                "phpunit/phpunit": "^4.8",
+                "ptrofimov/xpmock": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dhii\\Expression\\Renderer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dhii Team",
+                    "email": "development@dhii.co"
+                }
+            ],
+            "description": "Interfaces for expression rendering.",
+            "time": "2018-02-01T15:05:06+00:00"
         },
         {
             "name": "dhii/i18n-helper-base",
@@ -2921,7 +2987,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dhii/expression-renderer-abstract": 20,
-        "dhii/container-helper-base": 20,
         "dhii/output-renderer-base": 20
     },
     "prefer-stable": true,
