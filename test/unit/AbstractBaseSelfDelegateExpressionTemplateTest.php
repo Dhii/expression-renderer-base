@@ -124,19 +124,19 @@ class AbstractBaseSelfDelegateExpressionTemplateTest extends TestCase
         $reflect = $this->reflect($subject);
 
         $expression = $this->createExpression($type = uniqid('type-'));
+        $context = [
+            ExpressionContextInterface::K_EXPRESSION => $expression,
+        ];
+
         $expected = uniqid('result-');
 
         $dlgTemplate = $this->createTemplate();
-        $dlgTemplate->method('render')->willReturn($expected);
+        $dlgTemplate->method('render')->with($context)->willReturn($expected);
 
         $dlgContainer = $this->createContainer();
         $dlgContainer->method('get')->with($type)->willReturn($dlgTemplate);
 
         $reflect->_setContainer($dlgContainer);
-
-        $context = [
-            ExpressionContextInterface::K_EXPRESSION => $expression,
-        ];
 
         $actual = $subject->render($context);
 

@@ -42,9 +42,9 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
      *
      * @since [*next-version*]
      */
-    protected function _renderExpression(ExpressionInterface $expression)
+    protected function _renderExpression(ExpressionInterface $expression, $context = null)
     {
-        return $this->_delegateRenderTerm($expression);
+        return $this->_delegateRenderTerm($expression, $context);
     }
 
     /**
@@ -62,7 +62,7 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
      *
      * @since [*next-version*]
      */
-    protected function _getTermDelegateRenderer(TermInterface $term)
+    protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
         return $this->_getTermTypeRenderer($term->getType());
     }
