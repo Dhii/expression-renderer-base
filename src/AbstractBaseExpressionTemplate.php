@@ -10,6 +10,7 @@ use Dhii\Output\CreateRendererExceptionCapableTrait;
 use Dhii\Output\CreateTemplateRenderExceptionCapableTrait;
 use Dhii\Output\TemplateInterface;
 use Dhii\Util\Normalization\NormalizeStringCapableTrait;
+use Exception as RootException;
 
 /**
  * Base functionality for expression templates.
@@ -87,5 +88,18 @@ abstract class AbstractBaseExpressionTemplate implements TemplateInterface
     public function render($context = null)
     {
         return $this->_render($context);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _throwRendererException(
+        $message = null,
+        $code = null,
+        RootException $previous = null
+    ) {
+        return $this->_createRendererException($message, $code, $previous, $this);
     }
 }
