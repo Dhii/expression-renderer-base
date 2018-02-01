@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/container-helper-base.git",
-                "reference": "fc57015dd36ce67021f80920cdac0cd89c8a2c75"
+                "reference": "cc6e9e3386b08342979226795d06a01e3139ce40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/fc57015dd36ce67021f80920cdac0cd89c8a2c75",
-                "reference": "fc57015dd36ce67021f80920cdac0cd89c8a2c75",
+                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/cc6e9e3386b08342979226795d06a01e3139ce40",
+                "reference": "cc6e9e3386b08342979226795d06a01e3139ce40",
                 "shasum": ""
             },
             "require": {
@@ -42,14 +42,7 @@
                     "Dhii\\Data\\Container\\": "src"
                 }
             },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "csfix": [
-                    "php-cs-fixer fix -vvv"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -60,11 +53,7 @@
                 }
             ],
             "description": "Helper functionality for working with container.",
-            "support": {
-                "source": "https://github.com/Dhii/container-helper-base/tree/task/initial-classes",
-                "issues": "https://github.com/Dhii/container-helper-base/issues"
-            },
-            "time": "2018-01-31T09:31:45+00:00"
+            "time": "2018-01-31T15:35:17+00:00"
         },
         {
             "name": "dhii/data-container-abstract",
@@ -510,12 +499,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/expression-renderer-abstract.git",
-                "reference": "e0958a3fd88218df11aca3a96f5624ad4b78c14b"
+                "reference": "7f19dff2c8a0634940b6fa2ac19f9a3a0e849564"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/expression-renderer-abstract/zipball/e0958a3fd88218df11aca3a96f5624ad4b78c14b",
-                "reference": "e0958a3fd88218df11aca3a96f5624ad4b78c14b",
+                "url": "https://api.github.com/repos/Dhii/expression-renderer-abstract/zipball/7f19dff2c8a0634940b6fa2ac19f9a3a0e849564",
+                "reference": "7f19dff2c8a0634940b6fa2ac19f9a3a0e849564",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +542,7 @@
                 }
             ],
             "description": "Abstract functionality for objects that can render expressions.",
-            "time": "2018-01-31T09:22:22+00:00"
+            "time": "2018-01-31T17:33:27+00:00"
         },
         {
             "name": "dhii/i18n-helper-base",
@@ -2723,16 +2712,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296"
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
-                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
                 "shasum": ""
             },
             "require": {
@@ -2744,7 +2733,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -2778,7 +2767,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-10-11T12:05:26+00:00"
+            "time": "2018-01-30T19:27:44+00:00"
         },
         {
             "name": "symfony/process",
