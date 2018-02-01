@@ -34,8 +34,11 @@ abstract class AbstractBaseCommonExpressionTemplate extends AbstractBaseDelegate
      *
      * @since [*next-version*]
      */
-    protected function _getCompileExpressionTermsGlue(ExpressionInterface $expression, array $renderedTerms)
-    {
+    protected function _getCompileExpressionTermsGlue(
+        ExpressionInterface $expression,
+        array $renderedTerms,
+        $context = null
+    ) {
         return sprintf(' %s ', $this->_getOperatorString());
     }
 }

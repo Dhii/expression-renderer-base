@@ -135,15 +135,18 @@ class AbstractBaseCommonExpressionTemplateTest extends TestCase
         );
         $render1 = uniqid('render-');
         $template1 = $this->createTemplate();
-        $template1->expects($this->atLeastOnce())->method('render')->with($term1)->willReturn($render1);
+        $ctx1 = [ExpressionContextInterface::K_EXPRESSION => $term1];
+        $template1->expects($this->atLeastOnce())->method('render')->with($ctx1)->willReturn($render1);
 
         $render2 = uniqid('render-');
         $template2 = $this->createTemplate();
-        $template2->expects($this->atLeastOnce())->method('render')->with($term2)->willReturn($render2);
+        $ctx2 = [ExpressionContextInterface::K_EXPRESSION => $term2];
+        $template2->expects($this->atLeastOnce())->method('render')->with($ctx2)->willReturn($render2);
 
         $render3 = uniqid('render-');
         $template3 = $this->createTemplate();
-        $template3->expects($this->atLeastOnce())->method('render')->with($term3)->willReturn($render3);
+        $ctx3 = [ExpressionContextInterface::K_EXPRESSION => $term3];
+        $template3->expects($this->atLeastOnce())->method('render')->with($ctx3)->willReturn($render3);
 
         $dlgCntr = $this->createContainer();
         $dlgCntr->method('get')->willReturnCallback(
