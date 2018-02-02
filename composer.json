@@ -37,6 +37,12 @@
             "Dhii\\Expression\\Renderer\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Dhii\\Expression\\Renderer\\FuncTest\\": "test/functional",
+            "Dhii\\Expression\\Renderer\\UnitTest\\": "test/unit"
+        }
+    },
     "scripts": {
         "test": "phpunit",
         "csfix": "php-cs-fixer fix -vvv"

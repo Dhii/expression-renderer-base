@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "dhii/container-helper-base",
-            "version": "v0.1-alpha2",
+            "version": "v0.1-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/container-helper-base.git",
-                "reference": "d54a1726f21ecaf71e95c21641233ef35c826365"
+                "reference": "3c890f19ec8c9fa578a35b47b2ff1a897f087018"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/d54a1726f21ecaf71e95c21641233ef35c826365",
-                "reference": "d54a1726f21ecaf71e95c21641233ef35c826365",
+                "url": "https://api.github.com/repos/Dhii/container-helper-base/zipball/3c890f19ec8c9fa578a35b47b2ff1a897f087018",
+                "reference": "3c890f19ec8c9fa578a35b47b2ff1a897f087018",
                 "shasum": ""
             },
             "require": {
@@ -67,10 +67,10 @@
             ],
             "description": "Helper functionality for working with container.",
             "support": {
-                "source": "https://github.com/Dhii/container-helper-base/tree/v0.1-alpha2",
+                "source": "https://github.com/Dhii/container-helper-base/tree/v0.1-alpha3",
                 "issues": "https://github.com/Dhii/container-helper-base/issues"
             },
-            "time": "2018-02-01T12:41:32+00:00"
+            "time": "2018-02-01T17:30:19+00:00"
         },
         {
             "name": "dhii/data-container-abstract",
