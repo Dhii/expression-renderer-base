@@ -3,7 +3,6 @@
 namespace Dhii\Expression\Renderer;
 
 use Dhii\Expression\ExpressionInterface;
-use Dhii\Util\String\StringableInterface as Stringable;
 
 /**
  * Base implementation that provides the most common functionality for expression templates.
