@@ -136,7 +136,7 @@ class AbstractBaseSelfDelegateExpressionTemplateTest extends TestCase
         $dlgContainer = $this->createContainer();
         $dlgContainer->method('get')->with($type)->willReturn($dlgTemplate);
 
-        $reflect->_setContainer($dlgContainer);
+        $reflect->_setTermTypeRendererContainer($dlgContainer);
 
         $actual = $subject->render($context);
 

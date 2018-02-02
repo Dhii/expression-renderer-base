@@ -162,7 +162,7 @@ class AbstractBaseCommonExpressionTemplateTest extends TestCase
                 throw new NotFoundException();
             }
         );
-        $reflect->_setContainer($dlgCntr);
+        $reflect->_setTermTypeRendererContainer($dlgCntr);
 
         $operator = uniqid('op-');
         $reflect->_setOperatorString($operator);

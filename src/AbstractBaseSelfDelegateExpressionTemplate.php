@@ -35,7 +35,10 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
      *
      * @since [*next-version*]
      */
-    use ContainerAwareTrait;
+    use ContainerAwareTrait {
+        _getContainer as _getTermTypeRendererContainer;
+        _setContainer as _setTermTypeRendererContainer;
+    }
 
     /**
      * {@inheritdoc}

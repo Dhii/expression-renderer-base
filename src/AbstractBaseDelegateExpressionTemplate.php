@@ -44,7 +44,10 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
      *
      * @since [*next-version*]
      */
-    use ContainerAwareTrait;
+    use ContainerAwareTrait {
+        _getContainer as _getTermTypeRendererContainer;
+        _setContainer as _setTermTypeRendererContainer;
+    }
 
     /**
      * {@inheritdoc}
@@ -74,15 +77,5 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
     protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
         return $this->_getTermTypeRenderer($term->getType());
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @since [*next-version*]
-     */
-    protected function _getTermTypeRendererContainer()
-    {
-        return $this->_getContainer();
     }
 }

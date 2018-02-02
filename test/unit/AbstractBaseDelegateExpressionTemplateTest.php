@@ -154,7 +154,7 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
                 throw new NotFoundException();
             }
         );
-        $reflect->_setContainer($dlgContainer);
+        $reflect->_setTermTypeRendererContainer($dlgContainer);
 
         $expected = $render1 . $render2;
 
