@@ -516,12 +516,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/expression-renderer-abstract.git",
-                "reference": "b279f8bfb4250c2c151f6f7ea0563c8de0a91472"
+                "reference": "e8bf4aaa55f4294c5a1242cd69ccb58c11bff974"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/expression-renderer-abstract/zipball/b279f8bfb4250c2c151f6f7ea0563c8de0a91472",
-                "reference": "b279f8bfb4250c2c151f6f7ea0563c8de0a91472",
+                "url": "https://api.github.com/repos/Dhii/expression-renderer-abstract/zipball/e8bf4aaa55f4294c5a1242cd69ccb58c11bff974",
+                "reference": "e8bf4aaa55f4294c5a1242cd69ccb58c11bff974",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +560,7 @@
                 }
             ],
             "description": "Abstract functionality for objects that can render expressions.",
-            "time": "2018-02-05T10:21:43+00:00"
+            "time": "2018-02-05T16:09:57+00:00"
         },
         {
             "name": "dhii/expression-renderer-interface",
