@@ -45,7 +45,7 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
      *
      * @since [*next-version*]
      */
-    protected function _renderExpression(ExpressionInterface $expression, $context = null)
+    protected function _renderExpression(TermInterface $expression, $context = null)
     {
         return $this->_delegateRenderTerm($expression, $context);
     }
