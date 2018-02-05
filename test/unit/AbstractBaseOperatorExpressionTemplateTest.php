@@ -3,7 +3,7 @@
 namespace Dhii\Expression\UnitTest;
 
 use Dhii\Data\Container\Exception\NotFoundException;
-use Dhii\Expression\Renderer\AbstractBaseCommonExpressionTemplate as TestSubject;
+use Dhii\Expression\Renderer\AbstractBaseOperatorExpressionTemplate as TestSubject;
 use Dhii\Expression\Renderer\ExpressionContextInterface;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use Xpmock\TestCase;
@@ -13,14 +13,14 @@ use Xpmock\TestCase;
  *
  * @since [*next-version*]
  */
-class AbstractBaseCommonExpressionTemplateTest extends TestCase
+class AbstractBaseOperatorExpressionTemplateTest extends TestCase
 {
     /**
      * The class name of the test subject.
      *
      * @since [*next-version*]
      */
-    const TEST_SUBJECT_CLASSNAME = 'Dhii\Expression\Renderer\AbstractBaseCommonExpressionTemplate';
+    const TEST_SUBJECT_CLASSNAME = 'Dhii\Expression\Renderer\AbstractBaseOperatorExpressionTemplate';
 
     /**
      * Creates a new instance of the test subject.

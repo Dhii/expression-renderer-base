@@ -5,22 +5,15 @@ namespace Dhii\Expression\Renderer;
 use Dhii\Expression\ExpressionInterface;
 
 /**
- * Base implementation that provides the most common functionality for expression templates.
+ * Base implementation that provides common functionality for operator-style expression templates.
  *
  * This partial implementation provides term render delegation via a container, term render compilation via imploding
- * and operator string awareness for use as an imploding glue.
+ * rendered terms as operands and operator string awareness for use as an imploding glue.
  *
  * @since [*next-version*]
  */
-abstract class AbstractBaseCommonExpressionTemplate extends AbstractBaseDelegateExpressionTemplate
+abstract class AbstractBaseOperatorExpressionTemplate extends AbstractBaseDelegateExpressionTemplate
 {
-    /*
-     * Provides functionality for compiling expression terms via imploding.
-     *
-     * @since [*next-version*]
-     */
-    use CompileExpressionTermsImplodeTrait;
-
     /*
      * Provides awareness of an operator string.
      *
@@ -33,11 +26,14 @@ abstract class AbstractBaseCommonExpressionTemplate extends AbstractBaseDelegate
      *
      * @since [*next-version*]
      */
-    protected function _getCompileExpressionTermsGlue(
+    protected function _compileExpressionTerms(
         ExpressionInterface $expression,
         array $renderedTerms,
         $context = null
     ) {
-        return sprintf(' %s ', $this->_getOperatorString());
+        $opStr = $this->_getOperatorString();
+        $glueStr = sprintf(' %s ', $opStr);
+
+        return implode($glueStr, $renderedTerms);
     }
 }
