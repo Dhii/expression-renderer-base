@@ -61,6 +61,26 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
     }
 
     /**
+     * Creates a new term mock instance.
+     *
+     * @since [*next-version*]
+     *
+     * @param string $type The term type.
+     *
+     * @return MockObject
+     */
+    public function createTerm($type = '')
+    {
+        $mock = $this->getMockBuilder('Dhii\Expression\TermInterface')
+                     ->setMethods(['getType'])
+                     ->getMockForAbstractClass();
+
+        $mock->method('getType')->willReturn($type);
+
+        return $mock;
+    }
+
+    /**
      * Creates a new container mock instance.
      *
      * @since [*next-version*]
@@ -162,6 +182,38 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
                 ->method('_compileExpressionTerms')
                 ->with($expression, [$render1, $render2], $ctx)
                 ->willReturn($expected);
+
+        $actual = $subject->render($ctx);
+
+        $this->assertEquals($expected, $actual, 'Retrieved render result does not match expectation.');
+    }
+
+    /**
+     * Tests the render method to assert whether the delegate renderer is used to render the term given in the context.
+     *
+     * @since [*next-version*]
+     */
+    public function testRenderDelegateTerm()
+    {
+        $subject = $this->createInstance();
+        $reflect = $this->reflect($subject);
+
+        $term = $this->createTerm('');
+        $ctx = [ExpressionContextInterface::K_EXPRESSION => $term];
+
+        $expected = uniqid('render-');
+        $template = $this->createTemplate();
+        $template->expects($this->atLeastOnce())->method('render')->with($ctx)->willReturn($expected);
+
+        $dlgContainer = $this->createContainer();
+        $dlgContainer->method('get')->with($term->getType())->willReturnCallback(
+            function($key) use ($template) {
+                return $template;
+            }
+        );
+        $reflect->_setTermTypeRendererContainer($dlgContainer);
+
+        $subject->expects($this->never())->method('_renderExpressionAndTerms');
 
         $actual = $subject->render($ctx);
 
