@@ -19,7 +19,7 @@
         "dhii/data-container-base": "^0.1",
         "dhii/container-helper-base": "^0.1",
         "dhii/output-renderer-abstract": "^0.1",
-        "dhii/output-renderer-base": "dev-task/initial-classes",
+        "dhii/output-renderer-base": "^0.1",
         "dhii/iterator-helper-base": "^0.1",
         "dhii/normalization-helper-base": "^0.1",
         "dhii/exception-helper-base": "^0.1",
@@ -46,11 +46,5 @@
     "scripts": {
         "test": "phpunit",
         "csfix": "php-cs-fixer fix -vvv"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Dhii/container-helper-base"
-        }
-    ]
+    }
 }
