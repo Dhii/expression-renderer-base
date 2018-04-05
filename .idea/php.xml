@@ -23,7 +23,6 @@
       <path value="$PROJECT_DIR$/vendor/dhii/type-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/output-renderer-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/data-container-base" />
-      <path value="$PROJECT_DIR$/vendor/dhii/exception-helper-base" />
       <path value="$PROJECT_DIR$/vendor/dhii/evaluable-interface" />
       <path value="$PROJECT_DIR$/vendor/dhii/container-helper-base" />
       <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
