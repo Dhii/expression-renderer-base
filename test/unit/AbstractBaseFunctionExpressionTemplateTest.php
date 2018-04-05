@@ -32,8 +32,10 @@ class AbstractBaseFunctionExpressionTemplateTest extends TestCase
     public function createInstance()
     {
         $mock = $this->getMockBuilder(static::TEST_SUBJECT_CLASSNAME)
-                     ->setMethods([])
+                     ->setMethods(['_normalizeKey'])
                      ->getMockForAbstractClass();
+
+        $mock->method('_normalizeKey')->willReturnArgument(0);
 
         return $mock;
     }

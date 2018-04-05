@@ -32,8 +32,10 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
     public function createInstance()
     {
         $mock = $this->getMockBuilder(static::TEST_SUBJECT_CLASSNAME)
-                     ->setMethods(['_compileExpressionTerms'])
+                     ->setMethods(['_compileExpressionTerms', '_normalizeKey'])
                      ->getMockForAbstractClass();
+
+        $mock->method('_normalizeKey')->willReturnArgument(0);
 
         return $mock;
     }
