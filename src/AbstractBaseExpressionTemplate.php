@@ -6,7 +6,9 @@ use Dhii\Data\Container\ContainerGetCapableTrait;
 use Dhii\Data\Container\CreateContainerExceptionCapableTrait;
 use Dhii\Data\Container\CreateNotFoundExceptionCapableTrait;
 use Dhii\Data\Container\NormalizeContainerCapableTrait;
+use Dhii\Data\Container\NormalizeKeyCapableTrait;
 use Dhii\Exception\CreateInvalidArgumentExceptionCapableTrait;
+use Dhii\Exception\CreateOutOfRangeExceptionCapableTrait;
 use Dhii\I18n\StringTranslatingTrait;
 use Dhii\Output\CreateRendererExceptionCapableTrait;
 use Dhii\Output\CreateTemplateRenderExceptionCapableTrait;
@@ -48,6 +50,13 @@ abstract class AbstractBaseExpressionTemplate implements TemplateInterface
     use NormalizeContainerCapableTrait;
 
     /*
+     * Provides key normalization functionality.
+     *
+     * @since [*next-version*]
+     */
+    use NormalizeKeyCapableTrait;
+
+    /*
      * Provides string normalization functionality.
      *
      * @since [*next-version*]
@@ -60,6 +69,13 @@ abstract class AbstractBaseExpressionTemplate implements TemplateInterface
      * @since [*next-version*]
      */
     use CreateInvalidArgumentExceptionCapableTrait;
+
+    /*
+     * Provides functionality for creating out-of-range exception instances.
+     *
+     * @since [*next-version*]
+     */
+    use CreateOutOfRangeExceptionCapableTrait;
 
     /**
      * Provides functionality for creating container exception instances.
