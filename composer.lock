@@ -804,12 +804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dhii/output-renderer-base.git",
-                "reference": "fa80a20c4b0b116c442a60969c0d9253e47207fe"
+                "reference": "700483a37016e502be2ead9580bb9258ad8bf17b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dhii/output-renderer-base/zipball/fa80a20c4b0b116c442a60969c0d9253e47207fe",
-                "reference": "fa80a20c4b0b116c442a60969c0d9253e47207fe",
+                "url": "https://api.github.com/repos/Dhii/output-renderer-base/zipball/700483a37016e502be2ead9580bb9258ad8bf17b",
+                "reference": "700483a37016e502be2ead9580bb9258ad8bf17b",
                 "shasum": ""
             },
             "require": {
