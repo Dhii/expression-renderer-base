@@ -34,17 +34,8 @@ abstract class AbstractBaseOperatorExpressionTemplate extends AbstractBaseDelega
     ) {
         $opStr = $this->_getOperatorString();
         $glueStr = sprintf(' %s ', $opStr);
+        $joined = implode($glueStr, $renderedTerms);
 
-        return implode($glueStr, $renderedTerms);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @since [*next-version*]
-     */
-    protected function _renderExpressionTerm(TermInterface $term, $context = null)
-    {
-        return sprintf('(%s)', parent::_renderExpressionTerm($term, $context));
+        return sprintf('(%s)', $joined);
     }
 }
