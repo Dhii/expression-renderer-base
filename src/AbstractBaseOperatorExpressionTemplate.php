@@ -3,6 +3,7 @@
 namespace Dhii\Expression\Renderer;
 
 use Dhii\Expression\ExpressionInterface;
+use Dhii\Expression\TermInterface;
 
 /**
  * Base implementation that provides common functionality for operator-style expression templates.
@@ -35,5 +36,15 @@ abstract class AbstractBaseOperatorExpressionTemplate extends AbstractBaseDelega
         $glueStr = sprintf(' %s ', $opStr);
 
         return implode($glueStr, $renderedTerms);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _renderExpressionTerm(TermInterface $term, $context = null)
+    {
+        return sprintf('(%s)', parent::_renderExpressionTerm($term, $context));
     }
 }

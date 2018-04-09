@@ -169,7 +169,7 @@ class AbstractBaseOperatorExpressionTemplateTest extends TestCase
         $operator = uniqid('op-');
         $reflect->_setOperatorString($operator);
 
-        $expected = "$render1 $operator $render2 $operator $render3";
+        $expected = "($render1) $operator ($render2) $operator ($render3)";
         $context = [
             ExpressionContextInterface::K_EXPRESSION => $expression,
         ];
