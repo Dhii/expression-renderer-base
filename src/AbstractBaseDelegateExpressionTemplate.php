@@ -2,7 +2,6 @@
 
 namespace Dhii\Expression\Renderer;
 
-use Dhii\Data\Container\ContainerAwareTrait;
 use Dhii\Expression\ExpressionInterface;
 use Dhii\Expression\TermInterface;
 use Dhii\Output\TemplateAwareTrait;
@@ -34,16 +33,6 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
      * @since [*next-version*]
      */
     use DelegateRenderTermCapableTrait;
-
-    /*
-     * Provides awareness of, and storage functionality for, a container instance.
-     *
-     * @since [*next-version*]
-     */
-    use ContainerAwareTrait {
-        _getContainer as _getTermTypeRendererContainer;
-        _setContainer as _setTermTypeRendererContainer;
-    }
 
     /*
      * Provides awareness of, and storage functionality for, a template instance.
