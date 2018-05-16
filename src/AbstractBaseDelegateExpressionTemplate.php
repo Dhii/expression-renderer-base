@@ -5,14 +5,17 @@ namespace Dhii\Expression\Renderer;
 use Dhii\Data\Container\ContainerAwareTrait;
 use Dhii\Expression\ExpressionInterface;
 use Dhii\Expression\TermInterface;
+use Dhii\Output\TemplateAwareTrait;
 
 /**
- * Base functionality for expression renderers that delegate term rendering to other renderers.
+ * Base functionality for expression renderers that delegate term rendering to another renderer.
  *
  * This partial implementation traverses the expression and attempts to render its terms. Each term is passed onto a
- * delegate renderer obtained from an internal container instance.
+ * single, internal delegate renderer instance. Very useful when the delegate renderer is a "master" renderer that can
+ * render all term types.
  *
- * Implementors are only required to implement the `_compileExpressionTerms()` method.
+ * Implementors are only required to implement the `_compileExpressionTerms()` method to "compile" the rendered child
+ * terms into the final expression render result.
  *
  * @since [*next-version*]
  */
@@ -33,13 +36,6 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
     use DelegateRenderTermCapableTrait;
 
     /*
-     * Provides functionality for resolving delegate renderers via a container, using the term's type as key.
-     *
-     * @since [*next-version*]
-     */
-    use GetTermTypeRendererContainerTrait;
-
-    /*
      * Provides awareness of, and storage functionality for, a container instance.
      *
      * @since [*next-version*]
@@ -48,6 +44,13 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
         _getContainer as _getTermTypeRendererContainer;
         _setContainer as _setTermTypeRendererContainer;
     }
+
+    /*
+     * Provides awareness of, and storage functionality for, a template instance.
+     *
+     * @since [*next-version*]
+     */
+    use TemplateAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -80,6 +83,6 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
      */
     protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
-        return $this->_getTermTypeRenderer($term->getType());
+        return $this->_getTemplate();
     }
 }
