@@ -148,74 +148,36 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
 
         $expression = $this->createExpression(
             '',
-            [
+            $childTerms = [
                 $term1 = $this->createExpression($type1 = uniqid('type-')),
                 $term2 = $this->createExpression($type2 = uniqid('type-')),
             ]
         );
-        $ctx = [ExpressionContextInterface::K_EXPRESSION => $expression];
-        $render1 = uniqid('render-');
-        $template1 = $this->createTemplate();
+
+        // Internal delegate template getter method, called for each child term
+        $dlgTemplate = $this->createTemplate();
+        $reflect->_setTemplate($dlgTemplate);
+
+        // Delegate template contexts and render results
         $ctx1 = [ExpressionContextInterface::K_EXPRESSION => $term1];
-        $template1->expects($this->atLeastOnce())->method('render')->with($ctx1)->willReturn($render1);
-
-        $render2 = uniqid('render-');
-        $template2 = $this->createTemplate();
         $ctx2 = [ExpressionContextInterface::K_EXPRESSION => $term2];
-        $template2->expects($this->atLeastOnce())->method('render')->with($ctx2)->willReturn($render2);
+        $render1 = uniqid('render1-');
+        $render2 = uniqid('render2-');
 
-        $dlgContainer = $this->createContainer();
-        $dlgContainer->method('get')->willReturnCallback(
-            function($key) use ($type1, $type2, $template1, $template2) {
-                switch ($key) {
-                    case $type1:
-                        return $template1;
-                    case $type2:
-                        return $template2;
-                }
-                throw new NotFoundException();
-            }
-        );
-        $reflect->_setTermTypeRendererContainer($dlgContainer);
+        // Mock render results from delegate template
+        $dlgTemplate->expects($this->exactly(count($childTerms)))
+                    ->method('render')
+                    ->withConsecutive([$ctx1], [$ctx2])
+                    ->willReturnOnConsecutiveCalls($render1, $render2);
 
         $expected = $render1 . $render2;
 
+        // Context for SUT renderer
+        $ctx = [ExpressionContextInterface::K_EXPRESSION => $expression];
         $subject->expects($this->atLeastOnce())
                 ->method('_compileExpressionTerms')
                 ->with($expression, [$render1, $render2], $ctx)
                 ->willReturn($expected);
-
-        $actual = $subject->render($ctx);
-
-        $this->assertEquals($expected, $actual, 'Retrieved render result does not match expectation.');
-    }
-
-    /**
-     * Tests the render method to assert whether the delegate renderer is used to render the term given in the context.
-     *
-     * @since [*next-version*]
-     */
-    public function testRenderDelegateTerm()
-    {
-        $subject = $this->createInstance();
-        $reflect = $this->reflect($subject);
-
-        $term = $this->createTerm('');
-        $ctx = [ExpressionContextInterface::K_EXPRESSION => $term];
-
-        $expected = uniqid('render-');
-        $template = $this->createTemplate();
-        $template->expects($this->atLeastOnce())->method('render')->with($ctx)->willReturn($expected);
-
-        $dlgContainer = $this->createContainer();
-        $dlgContainer->method('get')->with($term->getType())->willReturnCallback(
-            function($key) use ($template) {
-                return $template;
-            }
-        );
-        $reflect->_setTermTypeRendererContainer($dlgContainer);
-
-        $subject->expects($this->never())->method('_renderExpressionAndTerms');
 
         $actual = $subject->render($ctx);
 

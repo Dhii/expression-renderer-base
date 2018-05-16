@@ -129,42 +129,30 @@ class AbstractBaseFunctionExpressionTemplateTest extends TestCase
 
         $expression = $this->createExpression(
             '',
-            [
+            $childTerms = [
                 $term1 = $this->createExpression($type1 = uniqid('type-')),
                 $term2 = $this->createExpression($type2 = uniqid('type-')),
                 $term3 = $this->createExpression($type3 = uniqid('type-')),
             ]
         );
-        $render1 = uniqid('render-');
-        $template1 = $this->createTemplate();
+
+        // Internal delegate template getter method, called for each child term
+        $dlgTemplate = $this->createTemplate();
+        $reflect->_setTemplate($dlgTemplate);
+
+        // Delegate template contexts and render results
         $ctx1 = [ExpressionContextInterface::K_EXPRESSION => $term1];
-        $template1->expects($this->atLeastOnce())->method('render')->with($ctx1)->willReturn($render1);
-
-        $render2 = uniqid('render-');
-        $template2 = $this->createTemplate();
         $ctx2 = [ExpressionContextInterface::K_EXPRESSION => $term2];
-        $template2->expects($this->atLeastOnce())->method('render')->with($ctx2)->willReturn($render2);
-
-        $render3 = uniqid('render-');
-        $template3 = $this->createTemplate();
         $ctx3 = [ExpressionContextInterface::K_EXPRESSION => $term3];
-        $template3->expects($this->atLeastOnce())->method('render')->with($ctx3)->willReturn($render3);
+        $render1 = uniqid('render1-');
+        $render2 = uniqid('render2-');
+        $render3 = uniqid('render3-');
 
-        $dlgCntr = $this->createContainer();
-        $dlgCntr->method('get')->willReturnCallback(
-            function($key) use ($type1, $type2, $type3, $template1, $template2, $template3) {
-                switch ($key) {
-                    case $type1:
-                        return $template1;
-                    case $type2:
-                        return $template2;
-                    case $type3:
-                        return $template3;
-                }
-                throw new NotFoundException();
-            }
-        );
-        $reflect->_setTermTypeRendererContainer($dlgCntr);
+        // Mock render results from delegate template
+        $dlgTemplate->expects($this->exactly(count($childTerms)))
+                    ->method('render')
+                    ->withConsecutive([$ctx1], [$ctx2], [$ctx3])
+                    ->willReturnOnConsecutiveCalls($render1, $render2, $render3);
 
         $operator = uniqid('op-');
         $reflect->_setOperatorString($operator);
