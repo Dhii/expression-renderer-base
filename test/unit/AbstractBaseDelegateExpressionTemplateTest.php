@@ -5,6 +5,7 @@ namespace Dhii\Expression\UnitTest;
 use Dhii\Data\Container\Exception\NotFoundException;
 use Dhii\Expression\Renderer\AbstractBaseDelegateExpressionTemplate as TestSubject;
 use Dhii\Expression\Renderer\ExpressionContextInterface;
+use OutOfRangeException;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use Xpmock\TestCase;
 
@@ -27,12 +28,19 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
      *
      * @since [*next-version*]
      *
+     * @param array $methods Additional methods to mock.
+     *
      * @return MockObject
      */
-    public function createInstance()
+    public function createInstance(array $methods = [])
     {
         $mock = $this->getMockBuilder(static::TEST_SUBJECT_CLASSNAME)
-                     ->setMethods(['_compileExpressionTerms', '_normalizeKey'])
+                     ->setMethods(
+                         array_merge(
+                             ['_compileExpressionTerms', '_normalizeKey'],
+                             $methods
+                         )
+                     )
                      ->getMockForAbstractClass();
 
         $mock->method('_normalizeKey')->willReturnArgument(0);
@@ -182,5 +190,39 @@ class AbstractBaseDelegateExpressionTemplateTest extends TestCase
         $actual = $subject->render($ctx);
 
         $this->assertEquals($expected, $actual, 'Retrieved render result does not match expectation.');
+    }
+
+    /**
+     * Tests the render method to assert whether a renderer exception is thrown on failure to retrieve the delegate
+     * renderer for an expression term.
+     *
+     * @since [*next-version*]
+     */
+    public function testRenderNoDelegateRenderer()
+    {
+        $subject = $this->createInstance(['_getTermDelegateRenderer']);
+        $reflect = $this->reflect($subject);
+
+        $expression = $this->createExpression(
+            '',
+            $childTerms = [
+                $term1 = $this->createExpression($type1 = uniqid('type-')),
+                $term2 = $this->createExpression($type2 = uniqid('type-')),
+            ]
+        );
+
+        // Internal delegate template getter method, called for each child term
+        $dlgTemplate = $this->createTemplate();
+        $reflect->_setTemplate($dlgTemplate);
+
+        $subject->method('_getTermDelegateRenderer')
+                ->willThrowException(new OutOfRangeException());
+
+        // Context for SUT renderer
+        $ctx = [ExpressionContextInterface::K_EXPRESSION => $expression];
+
+        $this->setExpectedException('Dhii\Output\Exception\RendererExceptionInterface');
+
+        $subject->render($ctx);
     }
 }

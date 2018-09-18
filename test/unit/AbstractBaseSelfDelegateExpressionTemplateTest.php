@@ -2,8 +2,10 @@
 
 namespace Dhii\Expression\UnitTest;
 
+use Dhii\Data\Container\Exception\NotFoundException;
 use Dhii\Expression\Renderer\AbstractBaseSelfDelegateExpressionTemplate as TestSubject;
 use Dhii\Expression\Renderer\ExpressionContextInterface;
+use OutOfRangeException;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 use Xpmock\TestCase;
 
@@ -26,12 +28,14 @@ class AbstractBaseSelfDelegateExpressionTemplateTest extends TestCase
      *
      * @since [*next-version*]
      *
+     * @param array $methods Additional methods to mock.
+     *
      * @return MockObject
      */
-    public function createInstance()
+    public function createInstance(array $methods = [])
     {
         $mock = $this->getMockBuilder(static::TEST_SUBJECT_CLASSNAME)
-                     ->setMethods(['_normalizeKey'])
+                     ->setMethods(array_merge(['_normalizeKey']), $methods)
                      ->getMockForAbstractClass();
 
         $mock->method('_normalizeKey')->willReturnArgument(0);
@@ -143,5 +147,31 @@ class AbstractBaseSelfDelegateExpressionTemplateTest extends TestCase
         $actual = $subject->render($context);
 
         $this->assertEquals($expected, $actual, 'Retrieved render result does not match expectation.');
+    }
+
+    /**
+     * Tests the render method to assert whether a renderer exception is thrown on failure to retrieve the delegate
+     * renderer for an expression term.
+     *
+     * @since [*next-version*]
+     */
+    public function testRenderNoDelegateRenderer()
+    {
+        $subject = $this->createInstance(['_getTermDelegateRenderer']);
+        $reflect = $this->reflect($subject);
+
+        $expression = $this->createExpression($type = uniqid('type-'));
+        $context = [
+            ExpressionContextInterface::K_EXPRESSION => $expression,
+        ];
+
+        $dlgContainer = $this->createContainer();
+        $dlgContainer->method('get')->with($type)->willThrowException(new NotFoundException());
+
+        $reflect->_setTermTypeRendererContainer($dlgContainer);
+
+        $this->setExpectedException('Dhii\Output\Exception\RendererExceptionInterface');
+
+        $subject->render($context);
     }
 }
