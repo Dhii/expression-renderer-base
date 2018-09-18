@@ -5,6 +5,7 @@ namespace Dhii\Expression\Renderer;
 use Dhii\Data\Container\ContainerAwareTrait;
 use Dhii\Expression\TermInterface;
 use Exception as RootException;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * Base functionality for expression templates that delegate the expression given to them to another renderer.
@@ -57,7 +58,16 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
      */
     protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
-        return $this->_getTermTypeRenderer($term->getType());
+        try {
+            return $this->_getTermTypeRenderer($term->getType());
+        } catch (NotFoundExceptionInterface $exception) {
+            throw $this->_createOutOfRangeException(
+                $this->__('Term type does not correspond to a renderer'),
+                null,
+                $exception,
+                $term
+            );
+        }
     }
 
     /**
