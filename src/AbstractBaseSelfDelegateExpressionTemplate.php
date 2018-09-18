@@ -3,8 +3,8 @@
 namespace Dhii\Expression\Renderer;
 
 use Dhii\Data\Container\ContainerAwareTrait;
-use Dhii\Expression\ExpressionInterface;
 use Dhii\Expression\TermInterface;
+use Exception as RootException;
 
 /**
  * Base functionality for expression templates that delegate the expression given to them to another renderer.
@@ -68,5 +68,18 @@ abstract class AbstractBaseSelfDelegateExpressionTemplate extends AbstractBaseEx
     protected function _getTermTypeRendererContainer()
     {
         return $this->_getContainer();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _throwRendererException(
+        $message = null,
+        $code = null,
+        RootException $previous = null
+    ) {
+        throw $this->_createRendererException($message, $code, $previous, $this);
     }
 }
