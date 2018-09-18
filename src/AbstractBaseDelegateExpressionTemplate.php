@@ -5,6 +5,7 @@ namespace Dhii\Expression\Renderer;
 use Dhii\Expression\ExpressionInterface;
 use Dhii\Expression\TermInterface;
 use Dhii\Output\TemplateAwareTrait;
+use Exception as RootException;
 
 /**
  * Base functionality for expression renderers that delegate term rendering to another renderer.
@@ -73,5 +74,18 @@ abstract class AbstractBaseDelegateExpressionTemplate extends AbstractBaseExpres
     protected function _getTermDelegateRenderer(TermInterface $term, $context = null)
     {
         return $this->_getTemplate();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    protected function _throwRendererException(
+        $message = null,
+        $code = null,
+        RootException $previous = null
+    ) {
+        throw $this->_createRendererException($message, $code, $previous, $this);
     }
 }
